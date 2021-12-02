@@ -61,6 +61,8 @@ async (req, res)=> {
 
         // return json web token
 
+        const webtoken;
+
 
 
     res.send('User Registered');
