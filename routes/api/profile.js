@@ -119,7 +119,27 @@ router.get('/', async(req,res)=>{
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-})
+});
+
+
+// @router GET api/profile/user/:user_id
+// @desc   get profile by user id
+// @access public
+
+router.get('/user/:user_id', async(req,res)=>{
+    try {
+        const profile = await Profile.findOne({ user:req.params.user_id}).populate('user', ['name','avatar']);
+
+        if(!profile) return res.status(400).json({ msg: 'Profile Not Found'});
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        if(err.kind == 'ObjectId'){
+            return res.status(400).json({ msg: 'Profile Not Found'});
+        }
+        res.status(500).send('Server Error');
+    }
+});
 
 
 
