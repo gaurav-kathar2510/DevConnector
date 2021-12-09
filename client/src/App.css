@@ -19,6 +19,8 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  
+
 }
 
 a {
@@ -304,7 +306,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+  position: sticky-top;   /* To work fine else navbar overlaps components*/
   z-index: 1;
   width: 100%;
   top: 0;
@@ -574,4 +576,11 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+}
+
+.alert-wrapper {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  display: inline-block;
 }

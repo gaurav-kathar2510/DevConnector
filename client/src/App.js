@@ -1,7 +1,7 @@
-import React, {Fragment } from 'react';
-import { BrowserRouter , Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/layout/Navbar';
-import { Landing } from './components/layout/Landing';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
@@ -9,22 +9,17 @@ import './App.css';
 
 const  App = () => {
   return (
-    <BrowserRouter>
-      <Fragment>
+    <Router>
         <Navbar/>        
-        
-        <section className="container">
           <Routes>
-            <Route path='/' exact element = {<Landing />}/>
+            <Route path='/' element = {<Landing />}/>
             <Route path = "/register" element = {<Register />}/>
             <Route path = "/Login" element = {<Login />}/>
+
           </Routes>
-        </section>
-        <Landing/>
-      </Fragment>
-  </BrowserRouter>
+  </Router>
     
   );
-}
+};
 
 export default App;
