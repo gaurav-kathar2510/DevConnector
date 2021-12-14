@@ -5,10 +5,16 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
+//Redux
+
+import { Provider } from 'react-redux';
+import store from './store';
+
 import './App.css';
 
 const  App = () => {
   return (
+    <Provider store ={store}> 
     <Router>
         <Navbar/>        
           <Routes>
@@ -18,6 +24,7 @@ const  App = () => {
 
           </Routes>
   </Router>
+  </Provider>
     
   );
 };
