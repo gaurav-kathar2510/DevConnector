@@ -7,7 +7,15 @@ import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
-
+import ProfileForm from './components/profile-forms/ProfileForm';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
+// import NotFound from './components/layout/NotFound';
+import { LOGOUT } from './actions/types';
 
 
 //Redux
@@ -26,8 +34,24 @@ if(localStorage.token){
 const  App = () => {
 
   useEffect(()=>{
+
+      if(localStorage.token){
+        setAuthToken(localStorage.token);
+      }
+      // if no token we will get 401
       store.dispatch(loadUser());
+
+      // if log out in one tab automatically log out from other tab
+      window.addEventListener('storage', ()=>{
+        if(!localStorage.token) store.dispatch({type: LOGOUT});
+      });
   }, []);
+
+
+
+
+
+
   return (
     <Provider store ={store}> 
     <Router>
@@ -36,11 +60,32 @@ const  App = () => {
           <Routes>
             <Route path='/' element = {<Landing />}/>
             <Route path = "/register" element = {<Register />}/>
-            <Route path = "/Login" element = {<Login />}/>
+            <Route path = "/login" element = {<Login />}/>
+            <Route path = "/profiles" element = {<Profiles />}/>
+            <Route path = "/profile/:id" element = {<Profile />}/>
             <Route
             path="dashboard"
             element={<PrivateRoute component={Dashboard} />}
           />
+           <Route
+            path="create-profile"
+            element={<PrivateRoute component={ProfileForm} />}
+          />
+          <Route
+            path="edit-profile"
+            element={<PrivateRoute component={ProfileForm} />}
+          />
+          <Route
+            path="add-experience"
+            element={<PrivateRoute component={AddExperience} />}
+          />
+          <Route
+            path="add-education"
+            element={<PrivateRoute component={AddEducation} />}
+          />
+          <Route path="posts" element={<PrivateRoute component={Posts} />} />
+          <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
+         
 
           </Routes>
   </Router>
@@ -50,3 +95,6 @@ const  App = () => {
 };
 
 export default App;
+
+
+//  <Route path="/*" element={<NotFound />} />

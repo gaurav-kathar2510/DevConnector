@@ -9,6 +9,7 @@ const connectDB = async () => {
             useNewUrlParser: true
             
             
+            
         });
 
         console.log('MongoDB Connected...');

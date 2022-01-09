@@ -10,7 +10,6 @@ const User = require('../../models/User');
 
 // @router GET api/auth
 // @desc   Test route
-
 // @access Public
 
 router.get('/', auth,async (req, res)=> {
@@ -91,7 +90,6 @@ async (req, res)=> {
 
     }
 
-    
     
     
 }
